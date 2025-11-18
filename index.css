@@ -1,0 +1,76 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --neon-cyan: #00f3ff;
+    --neon-pink: #ff00ff;
+    --neon-green: #00ff41;
+    --glass-bg: rgba(10, 15, 30, 0.75);
+    --glass-border: rgba(0, 243, 255, 0.2);
+  }
+
+  body {
+    @apply bg-slate-950 text-slate-200 antialiased selection:bg-cyan-500 selection:text-black;
+    background-color: #02040a;
+    background-image:
+      linear-gradient(rgba(0, 243, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 243, 255, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
+
+@layer utilities {
+  .font-tech {
+    font-family: 'Orbitron', sans-serif;
+  }
+
+  .glass-panel {
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    border: 1px solid var(--glass-border);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+  }
+
+  .neon-text {
+    text-shadow: 0 0 5px currentColor;
+  }
+}
+
+/* Custom Scrollbar - Cyberpunk */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f172a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #00f3ff;
+  box-shadow: 0 0 10px #00f3ff;
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
