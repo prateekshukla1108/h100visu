@@ -1,0 +1,5 @@
+{
+  "name": "H100 GPU Architecture Viewer",
+  "description": "Interactive visualization of the NVIDIA H100 GPU architecture, featuring detailed views of SMSP Quadrants, the Full GPU Die, and Streaming Multiprocessors.",
+  "requestFramePermissions": []
+}
