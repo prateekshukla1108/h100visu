@@ -10,7 +10,7 @@ const SMSPQuadrant: React.FC<SMSPQuadrantProps> = ({ onUnitClick }) => {
     const items = [];
     for (let i = 0; i < count; i++) {
       let styles = '';
-      
+
       if (type === 'int32') {
         styles = 'bg-emerald-950/40 border-emerald-700/50 text-emerald-400 hover:bg-emerald-900/80 hover:border-emerald-400 hover:text-emerald-100 hover:shadow-[0_0_10px_rgba(52,211,153,0.4)]';
       } else if (type === 'fp32') {
@@ -20,7 +20,7 @@ const SMSPQuadrant: React.FC<SMSPQuadrantProps> = ({ onUnitClick }) => {
       }
 
       items.push(
-        <div 
+        <div
           key={i}
           className={`
             flex items-center justify-center py-2 text-[10px] md:text-[11px] font-bold font-mono border-b border-slate-900/60 last:border-b-0 cursor-pointer transition-all duration-150
@@ -42,31 +42,31 @@ const SMSPQuadrant: React.FC<SMSPQuadrantProps> = ({ onUnitClick }) => {
       </h2>
 
       <div className="max-w-[800px] mx-auto bg-slate-950/80 backdrop-blur border-2 border-slate-800 rounded-xl overflow-hidden p-4 shadow-[0_0_40px_rgba(0,243,255,0.1)]">
-        
+
         {/* Pipeline Stages */}
         <div className="flex flex-col gap-2 mb-2">
-          <div 
+          <div
             className="py-3 text-center font-bold text-sm font-tech uppercase tracking-wider bg-blue-950/30 border border-blue-700/50 text-blue-300 cursor-pointer hover:bg-blue-900/60 hover:border-blue-400 hover:text-blue-100 transition-all rounded-sm"
             onClick={() => onUnitClick('l0-cache')}
           >
             L0 Instruction Cache
           </div>
-          
-          <div 
+
+          <div
             className="py-3 text-center font-bold text-sm font-tech uppercase bg-orange-950/30 border border-orange-700/50 text-orange-300 cursor-pointer hover:bg-orange-900/60 hover:border-orange-400 hover:text-orange-100 transition-all rounded-sm"
             onClick={() => onUnitClick('warp-scheduler')}
           >
             Warp Scheduler <span className="text-[10px] opacity-70 font-sans normal-case ml-1 font-medium text-orange-200/70">(32 thread/clk)</span>
           </div>
 
-          <div 
+          <div
             className="py-3 text-center font-bold text-sm font-tech uppercase bg-orange-900/20 border border-orange-700/50 text-orange-300 cursor-pointer hover:bg-orange-900/60 hover:border-orange-400 hover:text-orange-100 transition-all rounded-sm"
             onClick={() => onUnitClick('dispatch-unit')}
           >
             Dispatch Unit <span className="text-[10px] opacity-70 font-sans normal-case ml-1 font-medium text-orange-200/70">(32 thread/clk)</span>
           </div>
 
-          <div 
+          <div
             className="py-5 text-center font-bold text-sm font-tech uppercase bg-cyan-950/20 border border-cyan-700/50 text-cyan-300 cursor-pointer hover:bg-cyan-900/60 hover:border-cyan-400 hover:text-white transition-all rounded-sm"
             onClick={() => onUnitClick('register-file')}
           >
@@ -80,9 +80,9 @@ const SMSPQuadrant: React.FC<SMSPQuadrantProps> = ({ onUnitClick }) => {
           {renderComputeColumn('fp32', 16)}
           {renderComputeColumn('fp32', 16)}
           {renderComputeColumn('fp64', 16)}
-          
+
           {/* Tensor Core */}
-          <div 
+          <div
             className="bg-gradient-to-br from-green-950/40 to-emerald-950/40 text-green-400 text-center flex flex-col items-center justify-center p-4 cursor-pointer hover:from-green-900/60 hover:to-emerald-900/60 hover:text-green-100 transition-all border-l border-slate-800 group"
             onClick={() => onUnitClick('tensor-core')}
           >
@@ -96,24 +96,24 @@ const SMSPQuadrant: React.FC<SMSPQuadrantProps> = ({ onUnitClick }) => {
         <div className="flex gap-2 mt-2">
           {/* LD/ST Group */}
           <div className="flex-1 relative border border-pink-700/40 rounded-sm p-1.5 bg-pink-950/10">
-             <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-slate-900 text-[10px] font-bold text-pink-500 px-2 border border-pink-700/40 rounded font-tech tracking-wider whitespace-nowrap z-10">LD/ST UNITS (16x)</div>
-             <div className="flex gap-[2px] mt-2">
-               {Array.from({ length: 16 }).map((_, i) => (
-                 <div 
-                  key={i} 
+            <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-slate-900 text-[10px] font-bold text-pink-500 px-2 border border-pink-700/40 rounded font-tech tracking-wider whitespace-nowrap z-10">LD/ST UNITS (8x)</div>
+            <div className="flex gap-[2px] mt-2">
+              {Array.from({ length: 8 }).map((_, i) => (
+                <div
+                  key={i}
                   className="flex-1 bg-pink-900/20 border border-pink-700/30 text-pink-400 text-center text-[8px] font-bold py-4 cursor-pointer hover:bg-pink-600/80 hover:border-pink-400 hover:text-white transition-all writing-mode-vertical rounded-sm"
                   onClick={() => onUnitClick('ldst')}
-                 >
-                   LD/ST
-                 </div>
-               ))}
-             </div>
+                >
+                  LD/ST
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* SFU Group */}
           <div className="flex-[0.3] relative border border-indigo-700/40 rounded-sm p-1.5 bg-indigo-950/10">
             <div className="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-slate-900 text-[10px] font-bold text-indigo-500 px-2 border border-indigo-700/40 rounded font-tech tracking-wider whitespace-nowrap z-10">SFU (4x)</div>
-            <div 
+            <div
               className="h-full mt-2 flex items-center justify-center bg-indigo-900/20 border border-indigo-700/30 text-indigo-400 font-bold text-lg font-tech cursor-pointer hover:bg-indigo-600/80 hover:border-indigo-400 hover:text-white transition-all rounded-sm"
               onClick={() => onUnitClick('sfu')}
             >

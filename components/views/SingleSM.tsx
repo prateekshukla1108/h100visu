@@ -61,8 +61,8 @@ const SingleSM: React.FC<SingleSMProps> = ({ onUnitClick }) => {
 
       {/* Footer Units (LD/ST + SFU) */}
       <div className="flex gap-1 mt-auto">
-        <div className="flex-1 grid grid-cols-[repeat(16,minmax(0,1fr))] gap-[1px] bg-pink-950/10 border border-pink-900/30 p-[2px] rounded-[2px]">
-          {Array.from({ length: 16 }).map((_, i) => (
+        <div className="flex-1 grid grid-cols-8 gap-[1px] bg-pink-950/10 border border-pink-900/30 p-[2px] rounded-[2px]">
+          {Array.from({ length: 8 }).map((_, i) => (
             <div key={i} className="bg-pink-900/30 h-6 text-[8px] flex items-center justify-center text-pink-400 cursor-pointer hover:bg-pink-500 hover:text-white transition-colors" onClick={() => onUnitClick('ldst')}>LD</div>
           ))}
         </div>
