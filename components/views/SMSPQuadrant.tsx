@@ -59,7 +59,7 @@ const SMSPQuadrant: React.FC<SMSPQuadrantProps> = ({ onUnitClick, architecture =
             className="py-3 text-center font-bold text-sm font-tech uppercase bg-orange-950/30 border border-orange-700/50 text-orange-300 cursor-pointer hover:bg-orange-900/60 hover:border-orange-400 hover:text-orange-100 transition-all rounded-sm"
             onClick={() => onUnitClick('warp-scheduler')}
           >
-            Warp Scheduler <span className="text-[10px] opacity-70 font-sans normal-case ml-1 font-medium text-orange-200/70">({isB200 ? '16 warps' : '12 warps'}, 32 thread/clk)</span>
+            Warp Scheduler <span className="text-[10px] opacity-70 font-sans normal-case ml-1 font-medium text-orange-200/70">(16 warps, 32 thread/clk)</span>
           </div>
 
           <div

@@ -43,7 +43,7 @@ const SingleSM: React.FC<SingleSMProps> = ({ onUnitClick, architecture = 'H100' 
       <div className="flex flex-col gap-[2px] mb-2">
         <div className="py-2 text-[10px] font-bold text-center border border-blue-900/40 bg-blue-950/20 text-blue-400 rounded-[2px] cursor-pointer hover:bg-blue-900/60 transition-colors" onClick={() => onUnitClick('l0-cache')}>L0 Cache</div>
         <div className="py-2 text-[10px] font-bold text-center border border-orange-900/40 bg-orange-950/20 text-orange-400 rounded-[2px] cursor-pointer hover:bg-orange-900/60 transition-colors" onClick={() => onUnitClick('warp-scheduler')}>
-          Warp Scheduler {isB200 && <span className="text-[8px] block opacity-70">(16 Warps)</span>}
+          Warp Scheduler <span className="text-[8px] block opacity-70">(16 Warps)</span>
         </div>
         <div className="py-2 text-[10px] font-bold text-center border border-orange-900/40 bg-orange-950/20 text-orange-400 rounded-[2px] cursor-pointer hover:bg-orange-900/60 transition-colors" onClick={() => onUnitClick('dispatch-unit')}>Dispatch</div>
         <div className="py-2 text-[10px] font-bold text-center border border-cyan-900/40 bg-cyan-950/20 text-cyan-400 rounded-[2px] cursor-pointer hover:bg-cyan-900/60 transition-colors" onClick={() => onUnitClick('register-file')}>Register File</div>

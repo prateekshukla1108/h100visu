@@ -46,7 +46,7 @@ export const b200UnitInfoData: Record<string, UnitInfo> = {
             {
                 title: 'B200 Enhancements',
                 content: [
-                    'Increased warp tracking capacity (16 per SMSP vs 12 in H100)',
+                    'Maintains high warp tracking capacity (16 per SMSP)',
                     'Higher occupancy potential to hide HBM3e latency',
                     'Improved latency hiding for massive 192GB memory pool',
                     'Critical for keeping 5th Gen Tensor Cores fed'
@@ -105,7 +105,7 @@ export const b200UnitInfoData: Record<string, UnitInfo> = {
                 title: 'B200 Considerations',
                 content: [
                     'Same 256KB total size as H100',
-                    'Higher pressure due to increased warp count (64 vs 48)',
+                    'High pressure due to massive thread parallelism',
                     'Requires careful register usage to achieve full occupancy',
                     'Critical resource for hiding memory latency'
                 ]
@@ -460,9 +460,9 @@ export const b200UnitInfoData: Record<string, UnitInfo> = {
             }
         ],
         specs: [
-            { label: 'Generation', value: 'PCIe Gen 6 (Likely)' },
+            { label: 'Generation', value: 'PCIe Gen 5.0' },
             { label: 'Lanes', value: 'x16' },
-            { label: 'Bandwidth', value: 'High Speed' }
+            { label: 'Bandwidth', value: '128 GB/s' }
         ]
     },
     'gigathread-engine': {
@@ -482,14 +482,14 @@ export const b200UnitInfoData: Record<string, UnitInfo> = {
                 title: 'Dual-Die Scaling',
                 content: [
                     'Orchestrates work across two compute dies',
-                    'Maximizes parallel execution across ~264 SMs',
+                    'Maximizes parallel execution across 160 SMs',
                     'Reduces idle time and improves throughput',
                     'Adaptive scheduling based on workload characteristics'
                 ]
             }
         ],
         specs: [
-            { label: 'SM Support', value: '~264 SMs' },
+            { label: 'SM Support', value: '160 SMs' },
             { label: 'Thread Capacity', value: 'Massive' },
             { label: 'Load Balancing', value: 'Cross-Die' }
         ]
@@ -542,7 +542,7 @@ export const b200UnitInfoData: Record<string, UnitInfo> = {
                     'Each die has its own memory controllers',
                     'Aggregates to a massive bus width across the package',
                     'Ensures minimal latency penalty via chip-to-chip interconnect',
-                    'Critical for feeding data to ~264 SMs efficiently'
+                    'Critical for feeding data to 160 SMs efficiently'
                 ]
             }
         ],
@@ -605,8 +605,8 @@ export const b200UnitInfoData: Record<string, UnitInfo> = {
             }
         ],
         specs: [
-            { label: 'SMs per GPC', value: 'Varies' },
-            { label: 'Total GPCs', value: 'Multiple' },
+            { label: 'SMs per GPC', value: '10 (Active)' },
+            { label: 'Total GPCs', value: '16 (8 per die)' },
             { label: 'Shared Resources', value: 'Raster/Polymorph engines' }
         ]
     },
@@ -635,7 +635,7 @@ export const b200UnitInfoData: Record<string, UnitInfo> = {
         ],
         specs: [
             { label: 'SMs per TPC', value: '2' },
-            { label: 'Total TPCs', value: 'Many' },
+            { label: 'Total TPCs', value: '80 (40 per die)' },
             { label: 'Shared Resources', value: 'Texture units, L1 cache' }
         ]
     },
@@ -666,8 +666,8 @@ export const b200UnitInfoData: Record<string, UnitInfo> = {
             {
                 title: 'Cache Architecture',
                 content: [
-                    '126 MB total L2 cache (vs 50MB in H100)',
-                    'Physically distributed across two dies but fully coherent',
+                    '128 MB total L2 cache',
+                    'Unified cache for the entire die/package',
                     '~10+ TB/s internal bandwidth',
                     'Supports both data and instruction caching'
                 ]
@@ -683,8 +683,8 @@ export const b200UnitInfoData: Record<string, UnitInfo> = {
             }
         ],
         specs: [
-            { label: 'Total Size', value: '126 MB' },
-            { label: 'Architecture', value: 'Shared (Distributed)' },
+            { label: 'Total Size', value: '128 MB' },
+            { label: 'Architecture', value: 'Unified' },
             { label: 'Bandwidth', value: '~10+ TB/s' }
         ]
     },
@@ -712,9 +712,9 @@ export const b200UnitInfoData: Record<string, UnitInfo> = {
             }
         ],
         specs: [
-            { label: 'Total Bandwidth', value: 'High' },
-            { label: 'Connected GPUs', value: 'Up to 8/16' },
-            { label: 'Topology', value: 'Mesh/Hub' }
+            { label: 'Total Bandwidth', value: '1.8 TB/s' },
+            { label: 'Connected GPUs', value: 'Up to 72 (NVL72)' },
+            { label: 'Topology', value: 'Switch Fabric' }
         ]
     },
     'nvlink-port': {
@@ -742,7 +742,7 @@ export const b200UnitInfoData: Record<string, UnitInfo> = {
         ],
         specs: [
             { label: 'Generation', value: 'NVLink 5.0' },
-            { label: 'Total Ports', value: 'Many' },
+            { label: 'Total Ports', value: '18' },
             { label: 'Direction', value: 'Bidirectional' }
         ]
     }
