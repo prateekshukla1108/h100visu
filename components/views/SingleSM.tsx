@@ -1,14 +1,11 @@
 import React from 'react';
-import { UnitKey, Architecture } from '../../types';
+import { UnitKey } from '../../types';
 
 interface SingleSMProps {
   onUnitClick: (key: UnitKey) => void;
-  architecture?: Architecture;
 }
 
-const SingleSM: React.FC<SingleSMProps> = ({ onUnitClick, architecture = 'H100' }) => {
-  const isB200 = architecture === 'B200';
-
+const SingleSM: React.FC<SingleSMProps> = ({ onUnitClick }) => {
   const renderComputeColumn = (type: 'int32' | 'fp32' | 'fp64', count: number) => {
     const items = [];
     for (let i = 0; i < count; i++) {
@@ -36,41 +33,29 @@ const SingleSM: React.FC<SingleSMProps> = ({ onUnitClick, architecture = 'H100' 
   };
 
   const renderSMBlock = (index: number) => (
-    <div className={`bg-slate-950/80 border ${isB200 ? 'border-green-900/30' : 'border-slate-700/50'} p-3 rounded-sm overflow-hidden flex flex-col h-full hover:border-cyan-500/50 hover:shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all group relative min-w-[260px]`}>
+    <div className="bg-slate-950/80 border border-slate-700/50 p-3 rounded-sm overflow-hidden flex flex-col h-full hover:border-cyan-500/50 hover:shadow-[0_0_15px_rgba(6,182,212,0.15)] transition-all group relative min-w-[260px]">
       <div className="absolute top-1 right-2 text-[10px] font-tech text-slate-600 font-bold opacity-50 group-hover:text-cyan-500 group-hover:opacity-100 z-10 bg-slate-950 px-2 rounded">SMSP {index}</div>
 
       {/* Top Units Pipeline */}
       <div className="flex flex-col gap-[2px] mb-2">
         <div className="py-2 text-[10px] font-bold text-center border border-blue-900/40 bg-blue-950/20 text-blue-400 rounded-[2px] cursor-pointer hover:bg-blue-900/60 transition-colors" onClick={() => onUnitClick('l0-cache')}>L0 Cache</div>
-        <div className="py-2 text-[10px] font-bold text-center border border-orange-900/40 bg-orange-950/20 text-orange-400 rounded-[2px] cursor-pointer hover:bg-orange-900/60 transition-colors" onClick={() => onUnitClick('warp-scheduler')}>
-          Warp Scheduler <span className="text-[8px] block opacity-70">(16 Warps)</span>
-        </div>
+        <div className="py-2 text-[10px] font-bold text-center border border-orange-900/40 bg-orange-950/20 text-orange-400 rounded-[2px] cursor-pointer hover:bg-orange-900/60 transition-colors" onClick={() => onUnitClick('warp-scheduler')}>Warp Scheduler</div>
         <div className="py-2 text-[10px] font-bold text-center border border-orange-900/40 bg-orange-950/20 text-orange-400 rounded-[2px] cursor-pointer hover:bg-orange-900/60 transition-colors" onClick={() => onUnitClick('dispatch-unit')}>Dispatch</div>
         <div className="py-2 text-[10px] font-bold text-center border border-cyan-900/40 bg-cyan-950/20 text-cyan-400 rounded-[2px] cursor-pointer hover:bg-cyan-900/60 transition-colors" onClick={() => onUnitClick('register-file')}>Register File</div>
       </div>
 
       {/* Compute Grid */}
-      <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1.5fr] border border-slate-800 bg-slate-900 rounded-[2px] overflow-hidden mb-2 relative">
+      <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1.5fr] border border-slate-800 bg-slate-900 rounded-[2px] overflow-hidden mb-2">
         {renderComputeColumn('int32', 16)}
         {renderComputeColumn('fp32', 16)}
         {renderComputeColumn('fp32', 16)}
         {renderComputeColumn('fp64', 16)}
-        <div className="flex flex-col h-full">
-          <div
-            className={`flex-1 bg-green-950/20 text-green-500 flex flex-col items-center justify-center p-1 cursor-pointer hover:bg-green-900/40 hover:text-green-300 transition-all border-l border-slate-800 ${isB200 ? 'h-3/4' : 'h-full'}`}
-            onClick={() => onUnitClick('tensor-core')}
-          >
-            <span className="font-tech font-bold text-lg leading-none">TC</span>
-            <span className="text-[9px] opacity-70 mt-1">{isB200 ? '5th Gen' : '4th Gen'}</span>
-          </div>
-          {isB200 && (
-            <div
-              className="h-1/4 bg-emerald-900/40 text-emerald-300 flex items-center justify-center text-[8px] font-bold border-t border-emerald-800/50 cursor-pointer hover:bg-emerald-800/60"
-              onClick={() => onUnitClick('tmem')}
-            >
-              TMEM
-            </div>
-          )}
+        <div
+          className="bg-green-950/20 text-green-500 flex flex-col items-center justify-center p-1 cursor-pointer hover:bg-green-900/40 hover:text-green-300 transition-all border-l border-slate-800"
+          onClick={() => onUnitClick('tensor-core')}
+        >
+          <span className="font-tech font-bold text-lg leading-none">TC</span>
+          <span className="text-[9px] opacity-70 mt-1">4th Gen</span>
         </div>
       </div>
 
@@ -91,7 +76,7 @@ const SingleSM: React.FC<SingleSMProps> = ({ onUnitClick, architecture = 'H100' 
   return (
     <div className="fade-in pb-12 w-full overflow-x-auto">
       <div className="min-w-[600px] max-w-[1400px] mx-auto">
-        <h2 className={`text-center font-tech font-bold mb-8 text-2xl tracking-widest uppercase drop-shadow-[0_0_10px_rgba(255,0,255,0.5)] ${isB200 ? 'text-green-400' : 'text-neon-pink'}`}>
+        <h2 className="text-center text-neon-pink font-tech font-bold mb-8 text-2xl tracking-widest uppercase drop-shadow-[0_0_10px_rgba(255,0,255,0.5)]">
           Streaming Multiprocessor <span className="text-sm text-slate-500 align-middle ml-2 font-sans font-normal normal-case tracking-normal">(Detailed View)</span>
         </h2>
 

@@ -15,7 +15,7 @@ export interface UnitInfo {
   specs: UnitSpec[];
 }
 
-export type UnitKey =
+export type UnitKey = 
   | 'l0-cache'
   | 'warp-scheduler'
   | 'dispatch-unit'
@@ -41,10 +41,7 @@ export type UnitKey =
   | 'l2-cache'
   | 'nvlink-hub'
   | 'nvlink-port'
-  | 'tmem'
   | 'default';
-
-export type Architecture = 'H100' | 'B200';
 
 export enum ViewType {
   SMSP = 'ism',
